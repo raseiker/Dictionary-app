@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dictionaryListFragment">
+
+    <fragment
+        android:id="@+id/dictionaryListFragment"
+        android:name="com.example.diccionarityapp.ui.DictionaryListFragment"
+        android:label="@string/app_name" >
+        <action
+            android:id="@+id/action_dictionaryListFragment_to_addDictionaryFragment"
+            app:destination="@id/addDictionaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDictionaryFragment"
+        android:name="com.example.diccionarityapp.ui.AddDictionaryFragment"
+        android:label="{customTitle}" >
+        <argument
+            android:name="customTitle"
+            app:argType="string"
+            app:nullable="false"/>
+    </fragment>
+</navigation>
