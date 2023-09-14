@@ -27,9 +27,15 @@ class DictionaryViewModel @Inject constructor(
     private var _insertActionStatus = true
     val insertActionStatus get() = _insertActionStatus
 
+    private var _isButtonEnabled = MutableLiveData(false)
+    val isButtonEnabled: LiveData<Boolean> get() = _isButtonEnabled
     init {
 //        getAllTwo()
 //        getSize()
+    }
+
+    fun isValidEntries(vararg entries: String){
+        _isButtonEnabled.value = entries.find { it.isEmpty() || it.isBlank() } == null
     }
 
     fun getAllTwo() = viewModelScope.launch {
@@ -93,4 +99,12 @@ class DictionaryViewModel @Inject constructor(
         meaning = meaning
     )
 
+}
+
+fun main() {
+    fun isEntriesValid(vararg entries: String): Boolean {
+        return entries.find { it.isEmpty() || it.isBlank() } == null
+    }
+
+    println(isEntriesValid("word", "    ","meaning"))
 }

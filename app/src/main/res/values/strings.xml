@@ -11,4 +11,6 @@
     <string name="alert_message">Are you sure to delete %s word and its meaning permanently?</string>
     <string name="lbl_meaning">Enter a relevant meaning</string>
     <string name="lbl_word">Enter your word</string>
+    <string name="lbl_button_update">Update</string>
+    <string name="lbl_button_insert">Insert</string>
 </resources>

@@ -10,7 +10,8 @@
         android:label="@string/app_name" >
         <action
             android:id="@+id/action_dictionaryListFragment_to_addDictionaryFragment"
-            app:destination="@id/addDictionaryFragment" />
+            app:destination="@id/addDictionaryFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/addDictionaryFragment"

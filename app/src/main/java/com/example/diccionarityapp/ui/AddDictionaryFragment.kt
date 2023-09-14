@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.diccionarityapp.R
 import com.example.diccionarityapp.databinding.FragmentAddDictionaryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,12 +31,14 @@ class AddDictionaryFragment : Fragment() {
         binding?.apply {
             viewModel = this@AddDictionaryFragment.viewModel
             addFragment = this@AddDictionaryFragment
-            isValidEntries = isValidEntries()
-            actionBtn.text = if(this@AddDictionaryFragment.viewModel.insertActionStatus) "Insert" else "Update"
+//            actionBtn.isEnabled = isValidEntries()
+            lifecycleOwner = viewLifecycleOwner
         }
     }
-    //this is in testing
-//    fun displayButtonText() = if(viewModel.insertActionStatus) "Insert" else "Update"
+    /*
+    Set appropriate text for the button: It only can be: Insert or Update
+     */
+    fun displayButtonText() = getString(if(viewModel.insertActionStatus) R.string.lbl_button_insert else R.string.lbl_button_update)
 
     /*
     Insert new item in the database
@@ -67,8 +70,12 @@ class AddDictionaryFragment : Fragment() {
         }
     }
 
+//    fun isValidEntries(): LiveData<Boolean>  {
+//        return liveData { binding?.meaningTv.toString().isNotEmpty() && binding?.wordTv.toString().isNotEmpty() }
+//    }
     fun isValidEntries(): Boolean  {
-        return binding?.meaningTv.toString().isNotEmpty() && binding?.wordTv.toString().isNotEmpty()
+        viewModel.isValidEntries(binding?.meaningTv?.text.toString(), binding?.wordTv?.text.toString())
+        return viewModel.isButtonEnabled.value ?: false
     }
         //true * false = false = true
 
