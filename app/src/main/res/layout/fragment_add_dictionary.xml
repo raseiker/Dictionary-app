@@ -39,7 +39,9 @@
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.selectedWord.name}"
                 tools:text="Star"
-                android:inputType="text" />
+                android:inputType="text"
+                app:otherInput="@{meaningTv}"
+                app:button="@{actionBtn}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -59,7 +61,7 @@
                 android:maxLines="2"
                 android:text="@{viewModel.selectedWord.meaning}"
                 tools:text="Arithmetic figure that it has five vertices."
-                android:inputType="text" />
+                android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -71,7 +73,7 @@
             android:layout_marginTop="35dp"
             android:text="@{addFragment.displayButtonText()}"
             android:onClick="@{() -> addFragment.onClick()}"
-            android:enabled="@{addFragment.isValidEntries()}"
+            android:enabled="false"
             tools:text="Insert"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/meaning"

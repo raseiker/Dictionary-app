@@ -1,10 +1,14 @@
 package com.example.diccionarityapp.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.diccionarityapp.R
@@ -31,8 +35,14 @@ class AddDictionaryFragment : Fragment() {
         binding?.apply {
             viewModel = this@AddDictionaryFragment.viewModel
             addFragment = this@AddDictionaryFragment
-//            actionBtn.isEnabled = isValidEntries()
             lifecycleOwner = viewLifecycleOwner
+
+            //THIS IS OPTIONAL
+//            listOf(wordTv, meaningTv).forEach { tv ->
+//                tv.addTextChangedListener(onTextChanged = {s,_,_,_ ->
+//                    actionBtn.isEnabled = wordTv.text.toString().isNotEmpty() && meaningTv.text.toString().isNotEmpty()
+//                })
+//            }
         }
     }
     /*
@@ -69,14 +79,4 @@ class AddDictionaryFragment : Fragment() {
             update()
         }
     }
-
-//    fun isValidEntries(): LiveData<Boolean>  {
-//        return liveData { binding?.meaningTv.toString().isNotEmpty() && binding?.wordTv.toString().isNotEmpty() }
-//    }
-    fun isValidEntries(): Boolean  {
-        viewModel.isValidEntries(binding?.meaningTv?.text.toString(), binding?.wordTv?.text.toString())
-        return viewModel.isButtonEnabled.value ?: false
-    }
-        //true * false = false = true
-
 }
